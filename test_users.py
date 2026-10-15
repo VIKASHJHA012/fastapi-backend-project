@@ -13,8 +13,7 @@ from database import get_db
 from models import Base,User,Post
 from Utilities.security import hash_password
 
-# TEST_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
-# TEST_DATABASE_URL ="postgresql+asyncpg://postgres:Vik%40ash1@localhost:5432/fastapi_test"
+# .
 
 test_engine = create_async_engine(TEST_DATABASE_URL,poolclass=NullPool)
 TestSessionLocal = async_sessionmaker(bind=test_engine,expire_on_commit=False)
