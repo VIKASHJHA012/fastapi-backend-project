@@ -1,0 +1,43 @@
+body{
+    font-family: Arial,  sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 30px;
+}
+
+h1{
+    color :#1f2937
+}
+
+button{
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#posts-container{
+    margin-top: 20px;
+}
+
+.post-card{
+    background-color: white;
+    padding: 16px;
+    margin-top: 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    max-width: 600px;
+}
+
+.post-card h3{
+    margin-top: 0;
+    color: #1f2937;
+}
+
+.post-card p{
+    margin-bottom: 0;
+    color: #6b7280;
+    font-size: 14px;
+}

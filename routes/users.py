@@ -13,7 +13,7 @@ router = APIRouter()
 async def get_users(db = Depends(get_db),current_user = Depends(get_current_user)):
         
         # users = db.query(User).all()
-        statement = select(User)
+        statement = (select(User).options(selectinload(User.posts)))
         result = await db.execute(statement)
         users = result.scalars().all()
         return users
