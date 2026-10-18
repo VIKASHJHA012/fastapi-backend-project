@@ -104,8 +104,8 @@ post_create.addEventListener("click", async function () {
         createPostContainer.textContent = 'Please enter title for post.';
         return;
     }
-    if(!accessToken){
-        createPostContainer.textContent='Please log in before creating a post.';
+    if (!accessToken) {
+        createPostContainer.textContent = 'Please log in before creating a post.';
         return;
     }
     const url = 'http://127.0.0.1:8000/api-post-v1/Post'
@@ -156,12 +156,102 @@ post_create.addEventListener("click", async function () {
     }
 })
 
+// ############################## Delete Post Code
+
+const post_id = document.getElementById("delete-post");
+const postDelete = document.getElementById("post-delete");
+const deleteContainer = document.getElementById("delete-post-container");
+
+postDelete.addEventListener("click", async function () {
+    deleteContainer.textContent = "Deleting Post..."
+    id = post_id.value.trim()
+    try {
+        const url = `http://127.0.0.1:8000/api-post-v1/Post/${id}`
+        const response = await fetch(
+            url,
+            {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                },
+
+            }
+        )
+        if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+        }
+        // const data = await response.json();
+
+        deleteContainer.replaceChildren();
+        deleteContainer.textContent = 'Post deleted successfully.';
+
+    }
+    catch (error) {
+        console.error("Delete post error:", error);
+        deleteContainer.textContent =
+            error.message === "Failed to fetch"
+                ? "Could not connect to the backend."
+                : error.message;
+    }
+})
 
 
+// ################## Update User code
+const userIdInp = document.getElementById('user-id');
+const userNameInp = document.getElementById('user-name');
+const userEmailInp = document.getElementById('user-email')
+
+const userUpdate = document.getElementById('update-user');
+const userUpdateContainer = document.getElementById('update-user-container');
+
+userUpdate.addEventListener("click", async function () {
+    const userId = userIdInp.value.trim();
+    const userName = userNameInp.value.trim();
+    const userEmail = userEmailInp.value.trim();
+    try {
+        const url = `http://127.0.0.1:8000/api-version-v1/users/${userId}`;
+        const response = await fetch(
+            url,
+            {
+                method: 'PATCH',
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name: userName, email: userEmail })
+            }
+        );
+        if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+        }
+        const data = await response.json();
+        userUpdateContainer.replaceChildren();
+        userUpdateContainer.replaceChildren();
+
+        const card = document.createElement("div");
+        card.className = "post-card";
+
+        const heading = document.createElement("h3");
+        heading.textContent = "User Updated Successfully!";
+
+        const details = document.createElement("p");
+        details.textContent = `User ID: ${data.id}`;
+
+        const name = document.createElement("p");
+        name.textContent = `Name: ${data.name}`;
+
+        const email = document.createElement("p");
+        email.textContent = `Email: ${data.email}`;
+
+        card.append(heading, details, name, email);
+        userUpdateContainer.append(card);
+    }
+    catch (error) {
+        console.error("Update user error:", error);
 
 
-
-
+    }
+});
 
 //  ################################ load posts code
 
@@ -169,7 +259,8 @@ const loadButton = document.getElementById("load-posts");
 
 const postContainer = document.getElementById("post-container");
 
-const emailInput = document.getElementById("user-email")
+// const emailInput = document.getElementById("user-email")
+const emailInput = document.getElementById("load-user-email");
 
 // loadButton.addEventListener("click",function(){
 //     const email = emailInput.value;

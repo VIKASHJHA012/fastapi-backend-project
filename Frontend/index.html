@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,65 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My FastAPI Posts</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
+
     <h1>My FastAPI Posts</h1>
-    <p>View posts from my backend application</p>
+    <p>View posts from my backend application.</p>
+
+    <!-- Registration -->
     <section>
         <h2>Create Account</h2>
 
         <form id="register-form">
             <label for="register-name">Name</label>
-            <input type="text" id="register-name" autocomplete="name" required>
+            <input type="text" id="register-name"
+                   autocomplete="name" required>
 
             <label for="register-email">Email</label>
-            <input type="email" id="register-email" autocomplete="email" required>
+            <input type="email" id="register-email"
+                   autocomplete="email" required>
 
             <label for="register-password">Password</label>
-            <input type="password" id="register-password" autocomplete="new-password" required>
+            <input type="password" id="register-password"
+                   autocomplete="new-password" required>
 
             <button type="submit">Register</button>
         </form>
 
         <p id="register-message" role="status"></p>
     </section>
+
+    <!-- Login -->
     <section>
-    <h2>Login</h2>
+        <h2>Login</h2>
 
-    <form id="login-form">
-        <label for="login-email">Email</label>
-        <input
-            type="email"
-            id="login-email"
-            autocomplete="email"
-            required
-        >
+        <form id="login-form">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email"
+                   autocomplete="email" required>
 
-        <label for="login-password">Password</label>
-        <input
-            type="password"
-            id="login-password"
-            autocomplete="current-password"
-            required
-        >
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password"
+                   autocomplete="current-password" required>
 
-        <button type="submit">Login</button>
-    </form>
+            <button type="submit">Login</button>
+        </form>
 
-    <p id="login-message" role="status"></p>
-</section>
-<section>
-    <h2>Create Post</h2>
-    <input type="text" id="user-post" placeholder="Enter Post Title">
-    <button id="post-create">Create Post</button>
-    <div id="create-post-container"></div>
-</section>
-<section><input type="email" id="user-email" placeholder="Enter user email">
-    <button id="load-posts">Load Posts</button>
-    <div id="post-container"></div></section>
-    
+        <p id="login-message" role="status"></p>
+    </section>
+
+    <!-- Create Post -->
+    <section>
+        <h2>Create Post</h2>
+
+        <input type="text" id="user-post"
+               placeholder="Enter post title">
+
+        <button type="button" id="post-create">Create Post</button>
+
+        <div id="create-post-container"></div>
+    </section>
+
+    <!-- Load Posts -->
+    <section>
+        <h2>Load User Posts</h2>
+
+        <input type="email" id="load-user-email"
+               placeholder="Enter user email">
+
+        <button type="button" id="load-posts">Load Posts</button>
+
+        <div id="post-container"></div>
+    </section>
+
+    <!-- Update User -->
+    <section>
+        <h2>Update User</h2>
+
+        <input type="number" id="user-id"
+               placeholder="Enter user ID">
+
+        <input type="text" id="user-name"
+               placeholder="Enter new name">
+
+        <input type="email" id="user-email"
+               placeholder="Enter new email">
+
+        <button type="button" id="update-user">Update User</button>
+
+        <div id="update-user-container"></div>
+    </section>
+
+    <!-- Delete Post -->
+    <section>
+        <h2>Delete Post</h2>
+
+        <input type="number" id="delete-post"
+               placeholder="Enter post ID">
+
+        <button type="button" id="post-delete">Delete Post</button>
+
+        <div id="delete-post-container"></div>
+    </section>
+
     <script src="app.js"></script>
 </body>
 

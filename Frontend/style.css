@@ -1,47 +1,147 @@
-body{
-    font-family: Arial,  sans-serif;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #f3f4f6;
+    color: #111827;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 24px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+body > h1,
+body > p {
+    grid-column: 1 / -1;
+}
+
+h1 {
+    color: #1f2937;
+    font-size: 32px;
     margin: 0;
-    padding: 30px;
 }
 
-h1{
-    color :#1f2937
+body > p {
+    color: #6b7280;
+    margin: -12px 0 4px;
 }
 
-button{
+section {
+    min-width: 0;
+    background-color: #ffffff;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+    color: #1f2937;
+    font-size: 20px;
+    margin: 0 0 18px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    width: 180px;
+    max-width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 14px;
+    color: #111827;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+}
+
+input:focus {
+    outline: 2px solid #93c5fd;
+    border-color: #2563eb;
+}
+
+button {
     padding: 10px 16px;
     background-color: #2563eb;
     color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-#posts-container{
-    margin-top: 20px;
+button:hover {
+    background-color: #1d4ed8;
 }
 
-.post-card{
-    background-color: white;
-    padding: 16px;
-    margin-top: 16px;
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#post-container,
+#create-post-container,
+#delete-post-container,
+#update-user-container,
+#register-message,
+#login-message {
+    margin-top: 14px;
+    overflow-wrap: anywhere;
+}
+
+.post-card {
+    background-color: #f9fafb;
+    padding: 18px;
+    margin-top: 14px;
+    border: 1px solid #e5e7eb;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.post-card h3{
+.post-card h3 {
     margin-top: 0;
     color: #1f2937;
 }
 
-.post-card p{
+.post-card p {
     margin-bottom: 0;
     color: #6b7280;
     font-size: 14px;
 }
 
-section {
-margin: 10px 10px;
+@media (max-width: 760px) {
+    body {
+        grid-template-columns: 1fr;
+        padding: 20px 14px;
+        gap: 16px;
+    }
+
+    body > h1 {
+        font-size: 27px;
+    }
+
+    section {
+        padding: 18px;
+    }
 }

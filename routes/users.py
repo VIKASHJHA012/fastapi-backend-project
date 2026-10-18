@@ -54,7 +54,7 @@ async def update_user(id :int ,user : UserUpdate, db =Depends(get_db),current_us
 async def update_user_partially(id:int,user : UserUpdatePatch,db=Depends(get_db),current_user = Depends(get_current_user)):
 
         # user_updated = db.query(User).filter(User.id == id).first()
-        statement = select(User).filter(User.id == id)
+        statement = select(User).options(selectinload(User.posts)).filter(User.id == id)
 
         result = await db.execute(statement)
 
@@ -62,6 +62,11 @@ async def update_user_partially(id:int,user : UserUpdatePatch,db=Depends(get_db)
 
         if user_updated is None:
                 raise HTTPException(status_code=404,detail="User not found")
+        if user_updated.id != current_user.id:
+                raise HTTPException(
+                status_code=403,
+                detail="You can only update your own account"
+                 )
         
         user_update = user.model_dump(exclude_unset=True)
 
@@ -69,7 +74,7 @@ async def update_user_partially(id:int,user : UserUpdatePatch,db=Depends(get_db)
                 setattr(user_updated,key,value)
 
         await db.commit()
-        await db.refresh(user_updated)
+        await db.refresh(user_updated, attribute_names=["posts"])
         return user_updated
 
 @router.delete("/users/{id}")
