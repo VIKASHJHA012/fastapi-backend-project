@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,64 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
     <h1>My FastAPI Posts</h1>
     <p>View posts from my backend application</p>
-    <input type="email" id="user-email" placeholder="Enter user email">
+    <section>
+        <h2>Create Account</h2>
+
+        <form id="register-form">
+            <label for="register-name">Name</label>
+            <input type="text" id="register-name" autocomplete="name" required>
+
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" autocomplete="email" required>
+
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" autocomplete="new-password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p id="register-message" role="status"></p>
+    </section>
+    <section>
+    <h2>Login</h2>
+
+    <form id="login-form">
+        <label for="login-email">Email</label>
+        <input
+            type="email"
+            id="login-email"
+            autocomplete="email"
+            required
+        >
+
+        <label for="login-password">Password</label>
+        <input
+            type="password"
+            id="login-password"
+            autocomplete="current-password"
+            required
+        >
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p id="login-message" role="status"></p>
+</section>
+<section>
+    <h2>Create Post</h2>
+    <input type="text" id="user-post" placeholder="Enter Post Title">
+    <button id="post-create">Create Post</button>
+    <div id="create-post-container"></div>
+</section>
+<section><input type="email" id="user-email" placeholder="Enter user email">
     <button id="load-posts">Load Posts</button>
-    <div id ="post-container"></div>
+    <div id="post-container"></div></section>
+    
     <script src="app.js"></script>
 </body>
+
 </html>
