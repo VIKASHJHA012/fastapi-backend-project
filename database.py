@@ -22,7 +22,12 @@ from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker
 from config import DATABASE_URL
 from models import Base
 
-engine = create_async_engine(DATABASE_URL)
+# engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,
+)
 AsyncSessionLocal = async_sessionmaker(bind = engine,expire_on_commit=False)
 
 async def init_db():
