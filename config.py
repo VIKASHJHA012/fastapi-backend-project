@@ -14,4 +14,11 @@ if DATABASE_URL and DATABASE_URL.startswith("postgresql://"):
         1
     )
 
+if DATABASE_URL and "sslmode=" in DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.replace(
+        "sslmode=",
+        "ssl=",
+        1
+    )
+
 TEST_DATABASE_URL = os.getenv("TEST_DATABASE_URL")
