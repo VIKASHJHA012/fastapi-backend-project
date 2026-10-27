@@ -1,5 +1,10 @@
 
-const API_BASE = "https://fastapi-backend-project-w81e.onrender.com";
+// const API_BASE = "https://fastapi-backend-project-w81e.onrender.com";
+const API_BASE =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+        ? "http://127.0.0.1:8000"
+        : "https://fastapi-backend-project-w81e.onrender.com";
 
 // Keep the token across page refreshes in this tab.
 let accessToken = sessionStorage.getItem("accessToken");

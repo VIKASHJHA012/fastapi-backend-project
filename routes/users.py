@@ -44,6 +44,11 @@ async def update_user(id :int ,user : UserUpdate, db =Depends(get_db),current_us
 
         if user_updated is None:
                 raise HTTPException(status_code=404,detail='User Not Found')
+        if user_updated.id != current_user.id:
+                raise HTTPException(
+                status_code=403,
+                detail="You can only update your own account"
+                 )        
         user_updated.name = user.name
         user_updated.email = user.email
         await db.commit()
